@@ -1,5 +1,5 @@
 run: build
-	@go run bin/alejandro
+	@./bin/alejandro
 
 build:
 	@go build -o bin/alejandro

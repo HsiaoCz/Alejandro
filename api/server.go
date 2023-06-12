@@ -1,6 +1,9 @@
 package api
 
 import (
+	"alejandro/conf"
+	"alejandro/storage"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -8,12 +11,12 @@ import (
 )
 
 type server struct {
-	listenAddr string
+	ua *userApi
 }
 
-func NewServer(listenAddr string) *server {
+func NewServer(store *storage.Storage) *server {
 	return &server{
-		listenAddr: listenAddr,
+		ua: NewUserApi(store),
 	}
 }
 
@@ -22,7 +25,7 @@ func (s *server) Start() error {
 	r.HandleFunc("/user/{name}", s.handleGetUserName).Methods("GET")
 	srv := http.Server{
 		Handler:      r,
-		Addr:         s.listenAddr,
+		Addr:        fmt.Sprintf("%s:%s", conf.Conf.AC,conf.Conf.AC),
 		WriteTimeout: 1 * time.Second,
 		ReadTimeout:  1 * time.Second,
 	}
