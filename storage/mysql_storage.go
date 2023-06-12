@@ -1,7 +1,11 @@
 package storage
 
-type MysqlStorage struct{}
+type MysqlStorage struct {
+	Um userMysqlI
+}
 
 func NewMysqlStorage() *MysqlStorage {
-	return &MysqlStorage{}
+	return &MysqlStorage{
+		Um: newUserMysql(),
+	}
 }
