@@ -2,14 +2,15 @@ package main
 
 import (
 	"alejandro/api"
+	"alejandro/conf"
 	"alejandro/storage"
-	"fmt"
 	"log"
 )
 
 func main() {
-	fmt.Println("Hello")
-
+	if err := conf.InitConf(); err != nil {
+		log.Fatal(err)
+	}
 	store := storage.NewStorage()
 	srv := api.NewServer(store)
 	log.Fatal(srv.Start())

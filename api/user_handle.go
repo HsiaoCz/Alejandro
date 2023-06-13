@@ -1,5 +1,5 @@
 package api
 
-import "net/http"
+import "github.com/gin-gonic/gin"
 
-func (s *server) handleGetUserName(w http.ResponseWriter, r *http.Request){}
+func (u *userApi) registerRouter(c *gin.Context) {}

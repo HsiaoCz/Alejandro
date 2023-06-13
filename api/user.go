@@ -1,6 +1,8 @@
 package api
 
-import "alejandro/storage"
+import (
+	"alejandro/storage"
+)
 
 type userApi struct {
 	store *storage.Storage
@@ -9,5 +11,3 @@ type userApi struct {
 func NewUserApi(store *storage.Storage) *userApi {
 	return &userApi{store: store}
 }
-
-func (u *userApi) registerRouter() {}

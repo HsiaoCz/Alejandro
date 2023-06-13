@@ -7,8 +7,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
+
+var r = gin.Default()
 
 type server struct {
 	ua *userApi
@@ -21,11 +23,10 @@ func NewServer(store *storage.Storage) *server {
 }
 
 func (s *server) Start() error {
-	r := mux.NewRouter()
-	r.HandleFunc("/user/{name}", s.handleGetUserName).Methods("GET")
+	r.GET("/user/:name", s.ua.registerRouter)
 	srv := http.Server{
 		Handler:      r,
-		Addr:        fmt.Sprintf("%s:%s", conf.Conf.AC,conf.Conf.AC),
+		Addr:         fmt.Sprintf("%s:%s", conf.Conf.AC.Addr, conf.Conf.AC.Port),
 		WriteTimeout: 1 * time.Second,
 		ReadTimeout:  1 * time.Second,
 	}
