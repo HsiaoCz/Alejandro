@@ -9,3 +9,7 @@ func NewMysqlStorage() *MysqlStorage {
 		Um: newUserMysql(),
 	}
 }
+
+func (m *MysqlStorage) initStore() error {
+	return nil
+}
