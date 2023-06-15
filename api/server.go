@@ -23,7 +23,7 @@ func NewServer(store *storage.Storage) *server {
 }
 
 func (s *server) Start() error {
-	r.GET("/user/:name", s.ua.registerRouter)
+	s.ua.registerRouter()
 	srv := http.Server{
 		Handler:      r,
 		Addr:         fmt.Sprintf("%s:%s", conf.Conf.AC.Addr, conf.Conf.AC.Port),
